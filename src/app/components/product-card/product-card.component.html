@@ -1,0 +1,29 @@
+<div  class="product">
+  <img [src]="product.imagePath" [routerLink]="['/products',product.id]"  />
+  <div class="product-name">
+    {{ product.name }}
+  </div>
+  <div class="product-price">
+    {{ product.price }}
+  </div>
+  <div
+    class="quantity-bar d-flex justify-content-between align-items-center mt-2"
+  >
+    <button
+      (click)="deleteAmountBasket(product)"
+      class="btn btn-sm btn-danger"
+    >
+      -
+    </button>
+    <span>{{ product.quantity > 0 ? product.quantity : "-" }}</span>
+    <button
+      (click)="addAmountBasket(product)"
+      class="btn btn-sm btn-success"
+    >
+      +
+    </button>
+  </div>
+</div>
+
+
+

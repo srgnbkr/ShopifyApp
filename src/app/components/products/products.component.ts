@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { products } from 'src/app/products';
-import { Order, ShopService } from 'src/app/service/shop.service';
+import { Order, Product, ShopService } from 'src/app/service/shop.service';
 
 @Component({
   selector: 'app-products',
@@ -12,10 +12,14 @@ export class ProductsComponent {
   constructor(private shopService:ShopService) { }
 
 
+  ngOnInit() : void{
+    this.basket = this.shopService.basket;
+  }
+
 
   title = 'ShopifyApp';
   products = products;
-  basket: Product[] = [];
+  basket!: Product[];
 
   getTotalQuantity(): string {
     let total = 0;
@@ -36,27 +40,7 @@ export class ProductsComponent {
     return total;
   }
 
-  addAmountBasket(product: Product): void {
-    if (!this.basket.includes(product)) {
-      this.basket.push(product);
-    }
 
-    product.quantity++;
-  }
-
-  deleteAmountBasket(product: Product): void {
-    if (product.quantity == 0) {
-      return;
-    }
-    product.quantity--;
-
-    //0 Olursa sepetten çıkar
-
-    if(product.quantity == 0){
-      let index = this.basket.indexOf(product);
-      this.basket.splice(index,1);
-    }
-  }
 
   createOrder() : void{
     let order : Order = {
@@ -70,7 +54,7 @@ export class ProductsComponent {
       item.quantity = 0 ;
 
     }
-    this.basket = [];
+    this.basket.length = 0;
 
 
 
@@ -78,11 +62,3 @@ export class ProductsComponent {
 
 }
 
-type Product = {
-  id: number;
-  name: string;
-  imagePath: string;
-  price: number;
-  unit: string;
-  quantity: number;
-};
