@@ -1,0 +1,63 @@
+
+
+
+  <div class="row">
+    <div class="col-sm-7">
+      <h1>Ürünler</h1>
+
+      <div *ngFor="let product of products" class="product">
+        <img [src]="product.imagePath" />
+        <div class="product-name">
+          {{ product.name }}
+        </div>
+        <div class="product-price">
+          {{ product.price }}
+        </div>
+        <div
+          class="quantity-bar d-flex justify-content-between align-items-center mt-2"
+        >
+          <button
+            (click)="deleteAmountBasket(product)"
+            class="btn btn-sm btn-danger"
+          >
+            -
+          </button>
+          <span>{{ product.quantity > 0 ? product.quantity : "-" }}</span>
+          <button
+            (click)="addAmountBasket(product)"
+            class="btn btn-sm btn-success"
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <h1>Sepetim</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Ürün</th>
+            <th>Miktar</th>
+            <th>Fiyat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of basket">
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="total">
+            <td>Toplam Ücret</td>
+            <td>{{ getTotalQuantity() }}</td>
+            <td>{{ getTotalAmount() }}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <button class="btn btn-success" (click)="createOrder()" routerLink="/orders">Sipariş Oluştur</button>
+    </div>
+  </div>
+

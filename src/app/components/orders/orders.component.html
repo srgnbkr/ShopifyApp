@@ -1,0 +1,20 @@
+<h1>Siparişler</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sıra</th>
+      <th>Ürün Sayısı</th>
+      <th>Toplam Tutar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i = index;">  <!---This index internal result-->
+      <td>{{i + 1}}</td>
+      <td>{{order.count}}</td>
+      <td>{{order.cost}}</td>
+    </tr>
+  </tbody>
+</table>
+
+
