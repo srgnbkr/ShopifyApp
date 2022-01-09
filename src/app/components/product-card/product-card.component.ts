@@ -50,6 +50,7 @@ export class ProductCardComponent implements OnInit {
     if(product.quantity == 0){
       let index = this.basket.indexOf(product);
       this.basket.splice(index,1);
+
     }
   }
 

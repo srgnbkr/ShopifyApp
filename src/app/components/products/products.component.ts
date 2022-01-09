@@ -21,6 +21,8 @@ export class ProductsComponent {
   products = products;
   basket!: Product[];
 
+
+
   getTotalQuantity(): string {
     let total = 0;
 
@@ -59,6 +61,8 @@ export class ProductsComponent {
 
 
   }
+
+
 
 }
 
